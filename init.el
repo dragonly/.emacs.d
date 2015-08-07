@@ -8,6 +8,8 @@
     (eval-print-last-sexp)))
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(require 'package) ;; You might already have this line
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 (desktop-save-mode 1)
 (global-auto-revert-mode 1)
@@ -16,5 +18,5 @@
 (el-get-bundle ein)
 (el-get-bundle auto-complete+)
 (el-get-bundle auto-complete-emacs-lisp)
-(el-get-bundle elpa:darcula-theme)
+(el-get-bundle darcula-theme)
 (require 'darcula-theme)
