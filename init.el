@@ -15,8 +15,12 @@
 ;; add MELPA source to 'package.el' the solemn package manager
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
+; see http://stackoverflow.com/questions/11127109/emacs-24-package-system-initialization-problems/11140619#11140619
+;(setq packagte-enable-at-startup nil)
+;(package-initialize)
 (require 'el-get-elpa)
+;; actually this is bad, because directory exists has nothing to do with the assert that
+;; all recipes of repos in 'package-archives are loaded properly
 (unless (file-directory-p el-get-recipe-path-elpa)
     (el-get-elpa-build-local-recipes))
 
@@ -29,14 +33,24 @@
         el-get
         ein
         auto-complete+
-        auto-complete-emacs-lisp))
+        auto-complete-emacs-lisp
+        haskell-mode))
 
-;; setup packages out of official el-get repoOC`                                    
+;; setup packages out of official el-get repo
 (setq el-get-sources
       '(
-        (:name firecode-theme
-               :type elpa
-               :after (load-theme 'firecode t))
+;;        (:name firecode-theme
+;;               :type elpa
+;;               :after (load-theme 'firecode t))
+        (:name dark-krystal
+               :type github
+               :url "https://github.com/emacsfodder/emacs-dark-krystal-theme"
+               :after (progn
+                        (setq custom-theme-load-path
+                              (append custom-theme-load-path
+                                      '("~/.emacs.d/el-get/dark-krystal/")))
+                        (load-theme 'dark-krystal t)))
+        
         (:name better-defaults
                :type elpa)))
 
@@ -55,3 +69,5 @@
 (setq global-auto-revert-non-file-buffers t)
 ;; setup auto refresh of files and buffers when contents of them changed
 (global-auto-revert-mode 1)
+(split-window-horizontally)
+(xterm-mouse-mode)
