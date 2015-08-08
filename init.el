@@ -1,4 +1,6 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setup el-get the super package manager
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil 'noerror)
@@ -18,13 +20,9 @@
 (unless (file-directory-p el-get-recipe-path-elpa)
     (el-get-elpa-build-local-recipes))
 
-(desktop-save-mode 1)
-
-;; set this variable to enable auto refresh of buffers like dired-mode buffer
-(setq global-auto-revert-non-file-buffers t)
-;; setup auto refresh of files and buffers when contents of them changed
-(global-auto-revert-mode 1)
-
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; set up el-get packages
+;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setup el-get packages officially supported
 (setq el-get-packages
       '(
@@ -37,7 +35,8 @@
 (setq el-get-sources
       '(
         (:name firecode-theme
-               :type elpa)
+               :type elpa
+               :after (load-theme 'firecode t))
         (:name better-defaults
                :type elpa)))
 
@@ -48,4 +47,11 @@
                       (mapcar 'el-get-source-name el-get-sources)))
 (el-get 'sync el-get-packages)
 
-(load-theme 'firecode t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; some other init settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(desktop-save-mode 1)
+;; set this variable to enable auto refresh of buffers like dired-mode buffer
+(setq global-auto-revert-non-file-buffers t)
+;; setup auto refresh of files and buffers when contents of them changed
+(global-auto-revert-mode 1)
