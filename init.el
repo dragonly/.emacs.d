@@ -28,6 +28,8 @@
 ;; set up el-get packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setup el-get packages officially supported
+(setq emacs-config-dir
+      (file-name-directory (or load-file-name (buffer-file-name))))
 (setq el-get-packages
       '(
         el-get
@@ -39,9 +41,12 @@
 ;; setup packages out of official el-get repo
 (setq el-get-sources
       '(
-        (:name firecode-theme
+        (:name darcula-theme
                :type elpa
-               :after (load-theme 'firecode t))
+               :after (progn
+                        (add-to-list 'custom-theme-load-path
+                                     (expand-file-name  "el-get/darcula-theme/" emacs-config-dir))
+                        (load-theme 'darcula t)))
         (:name better-defaults
                :type elpa)))
 
@@ -62,7 +67,3 @@
 (global-auto-revert-mode 1)
 (split-window-horizontally)
 (xterm-mouse-mode)
-
-;(defun after-init-hook-func ()
-;    (load-theme 'firecode t))
-;(add-hook 'after-init-hook 'after-init-hook-func)
