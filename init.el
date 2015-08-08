@@ -40,7 +40,8 @@
 (setq el-get-sources
       '(
         (:name firecode-theme
-               :type elpa)
+               :type elpa
+               :after (load-theme 'firecode t))
         (:name better-defaults
                :type elpa)))
 
@@ -62,6 +63,6 @@
 (split-window-horizontally)
 (xterm-mouse-mode)
 
-(defun after-init-hook-func ()
-    (load-theme 'firecode t))
-(add-hook 'after-init-hook 'after-init-hook-func)
+;(defun after-init-hook-func ()
+;    (load-theme 'firecode t))
+;(add-hook 'after-init-hook 'after-init-hook-func)
