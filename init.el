@@ -28,6 +28,8 @@
 ;; set up el-get packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setup el-get packages officially supported
+(setq emacs-config-dir
+      (file-name-directory (or load-file-name (buffer-file-name))))
 (setq el-get-packages
       '(
         el-get
@@ -39,18 +41,12 @@
 ;; setup packages out of official el-get repo
 (setq el-get-sources
       '(
-;;        (:name firecode-theme
-;;               :type elpa
-;;               :after (load-theme 'firecode t))
-        (:name dark-krystal
-               :type github
-               :url "https://github.com/emacsfodder/emacs-dark-krystal-theme"
+        (:name darcula-theme
+               :type elpa
                :after (progn
-                        (setq custom-theme-load-path
-                              (append custom-theme-load-path
-                                      '("~/.emacs.d/el-get/dark-krystal/")))
-                        (load-theme 'dark-krystal t)))
-        
+                        (add-to-list 'custom-theme-load-path
+                                     (expand-file-name  "el-get/darcula-theme/" emacs-config-dir))
+                        (load-theme 'darcula t)))
         (:name better-defaults
                :type elpa)))
 
