@@ -41,12 +41,12 @@
 ;; setup packages out of official el-get repo
 (setq el-get-sources
       '(
-        (:name darcula-theme
-               :type elpa
-               :after (progn
-                        (add-to-list 'custom-theme-load-path
-                                     (expand-file-name  "el-get/darcula-theme/" emacs-config-dir))
-                        (load-theme 'darcula t)))
+;        (:name darcula-theme
+;               :type elpa
+;               :after (progn
+;                        (add-to-list 'custom-theme-load-path
+;                                     (expand-file-name  "el-get/darcula-theme/" emacs-config-dir))
+;                        (load-theme 'darcula t)))
         (:name better-defaults
                :type elpa)))
 
@@ -67,3 +67,19 @@
 (global-auto-revert-mode 1)
 (split-window-horizontally)
 (xterm-mouse-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; setup lisp environment
+;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq inferior-lisp-program "/usr/bin/sbcl")
+(require 'slime)
+(slime-setup)
+(require 'slime-autoloads)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; setup window resize kbd
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-<down>") 'shrink-window)
+(global-set-key (kbd "C-<up>") 'enlarge-window)
